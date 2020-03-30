@@ -2,7 +2,7 @@ function button_pressed_with_value(value_to_add: number) {
     if (interface_mode == interface_mode_change_leds) {
         change_leds_by(value_to_add)
         radio.sendValue("led_num", value_to_add)
-    } else if (interface_mode == interface_mode_change_mode) {
+    } else if (interface_mode == interface_mode_change_dynamic) {
         change_dynamic_by(value_to_add)
         radio.sendValue("mode", value_to_add)
     } else if (interface_mode == interface_mode_change_color) {
@@ -25,6 +25,8 @@ function change_leds_by(change_led_by_index: number) {
             leds_to_use,
             60
         )
+    } else {
+        basic.clearScreen()
     }
 }
 function change_dynamic_by(change_mode_by_index: number) {
@@ -37,6 +39,8 @@ function change_dynamic_by(change_mode_by_index: number) {
     dynamic_to_use = dynamic_array[dynamic_to_use_index]
     if (this_is_a_controller == true) {
         show_icon_for_dynamic(dynamic_to_use)
+    } else {
+        basic.clearScreen()
     }
 }
 input.onButtonPressed(Button.B, function () {
@@ -55,6 +59,8 @@ function change_interface() {
     interface_mode = interface_mode_array[interface_mode_index]
     if (this_is_a_controller == true) {
         basic.showString("" + interface_mode)
+    } else {
+        basic.clearScreen()
     }
 }
 function change_colour_by(change_colour_by_index: number) {
@@ -65,7 +71,11 @@ function change_colour_by(change_colour_by_index: number) {
         colour_to_use_index = colors_array.length - 1
     }
     colour_to_use = colors_array[colour_to_use_index]
-    basic.showNumber(colour_to_use_index)
+    if (this_is_a_controller == true) {
+        basic.showNumber(colour_to_use_index)
+    } else {
+        basic.clearScreen()
+    }
 }
 function show_icon_for_dynamic(word: string) {
     if (word == dynamic_respond_to_music) {
@@ -166,7 +176,7 @@ let dynamic_to_use = ""
 let interface_mode = ""
 let interface_mode_change_brightness = ""
 let interface_mode_change_leds = ""
-let interface_mode_change_mode = ""
+let interface_mode_change_dynamic = ""
 let interface_mode_change_color = ""
 let leds_to_use = 0
 let brightness_to_use_index = 0
@@ -174,20 +184,20 @@ let brightness_to_use_index = 0
 brightness_to_use_index = 2
 leds_to_use = 30
 interface_mode_change_color = "?"
-interface_mode_change_mode = "?"
+interface_mode_change_dynamic = "?"
 interface_mode_change_leds = "?"
 interface_mode_change_brightness = "?"
 interface_mode = "?"
 radio.setGroup(1)
 interface_mode_change_leds = "L"
-interface_mode_change_mode = "D"
+interface_mode_change_dynamic = "D"
 interface_mode_change_color = "C"
 interface_mode_change_brightness = "B"
 dynamic_to_use = "?"
 dynamic_respond_to_music = "sound"
 dynamic_show_set_number = "manual"
 dynamic_go_up_and_down = "up_down"
-interface_mode_array = [interface_mode_change_leds, interface_mode_change_color, interface_mode_change_brightness, interface_mode_change_mode]
+interface_mode_array = [interface_mode_change_leds, interface_mode_change_color, interface_mode_change_brightness, interface_mode_change_dynamic]
 interface_mode = interface_mode_array[interface_mode_index]
 dynamic_array = [dynamic_show_set_number, dynamic_go_up_and_down, dynamic_respond_to_music]
 dynamic_to_use = dynamic_array[dynamic_to_use_index]
