@@ -9,7 +9,7 @@ This code will control HaloHD led display with microbits. You can control it fro
 But sometimes you want to rig yoru haloHD to a lamp/project/sculpture and it is impractival to reach for it's buttons. That;s why you can put this code also on another microbit nearby running, and it will become a 'remote control' so you can use that to change HaloHD via build in blurtooth connectors.
 
 # To put this code on yoru microbit
-1. download a file with most recent version from (release folder)[/release/], and drag-n-drop that file into your computer-connected microbit
+1. download a file with most recent version from [release folder](./release/), and drag-n-drop that file into your computer-connected microbit
 
 # To edit code:
 1. log in and create a new project on https://makecode.microbit.org/
